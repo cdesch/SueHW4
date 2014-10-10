@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AEC3E2C3-DAC2-4D32-849A-F6FC7CA0825B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SueHW4</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE26EE9F06162A3E35B65305087EEFB922496CBD</key>
+		<string>github.com:cdesch/SueHW4.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SueHW4.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE26EE9F06162A3E35B65305087EEFB922496CBD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:cdesch/SueHW4.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE26EE9F06162A3E35B65305087EEFB922496CBD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE26EE9F06162A3E35B65305087EEFB922496CBD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SueHW4</string>
+		</dict>
+	</array>
+</dict>
+</plist>
