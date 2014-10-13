@@ -1,3 +1,10 @@
+//
+//
+//
+// LAb 4
+//
+//
+
 #include <iostream>
 #include <string>
 
@@ -15,41 +22,86 @@ public:
     void printTime();
     Time* add(Time* time);              //Will add it to the object
     Time* add(Time* time1,Time* time2); //Will add two objects to create a new one.
+    
     //Setters//
-    //void setHours(int h);
-    //void setMinutes(int m);
-    //void setSeconds(int s);
+    void setHours(int h);
+    void setMinutes(int m);
+    void setSeconds(int s);
     
     //Getters//
-    //int getHours();
-    //int getMinutes();
-    //int getSeconds();
+    int getHours();
+    int getMinutes();
+    int getSeconds();
     int getTime();
 };
+
+/*
+ //GETTERS//
+ Time::getHours(){
+ return hours;
+ }
+ Time::getMintutes){
+ return minutes;
+ }
+ int Date::getSeconds(){
+ return seconds;
+ }
+ 
+ //SETTERS//
+ void Date::setHours(int h){
+ hours = h;
+ }
+ void Date::setMinutes(int m){
+ minutes = m;
+ }
+ void Date::setSeconds(int s){
+ seconds = s;
+ }
+ */
+
+
+//Default Constructor
+struct Time::Time() {
+    this->hours=0;
+    this->minutes=0;
+    this->seconds=0;
+}
+
+//Construct with params
+struct Time::Time(int h, int m, int s){
+    this->hours = h;
+    this->minutes = m;
+    this->seconds = s;
+}
 
 ///Prints time in seconds
 //pre: hours, minutes seconds
 //post: converts time into seconds and then sums to get time in seconds
 void Time::printTime(){
-    //printf("%s %s\n",localtime);
+    //printf("%s %s\n",localtime);//???? should this be Time and mot localtime
 }
 
 //Adds time to the current object
-/* Usage:
- Time* myTime = new Time();
- myTime->hours = 1;
- myTime->minutes = 2;
- myTime->seconds = 3;
- 
- Time* myTime2 = new Time();
- myTime2->hours = 3;
- myTime2->minutes = 4;
- myTime2->seconds = 5;
- 
- //This is the usage
- Time* resultTime = myTime->add(myTime2);
- 
- */
+// Usage:
+Time* myTime = new Time();
+myTime->hours = 1;
+myTime->minutes = 2;
+myTime->seconds = 3;
+
+Time* myTime2 = new Time();
+myTime2->hours = 3;
+myTime2->minutes = 4;
+myTime2->seconds = 5;
+
+resultTime = (myTime->hours + myTime2->hours)*3600 + (myTime->minutes + myTime2->minutes)*60 + myTime->seconds + myTime2->seconds;
+hours = (resultTime/3600);
+minutes = (resultTime - hours*3600)/60;
+seconds = resultTime -(hours*3600 + minutes*60);
+cout << " hours is " << hours<<  " minutes " << minutes << " seconds " << seconds << endl;
+
+//This is the usage
+Time* resultTime = myTime->add(myTime2);
+
 Time* add(Time* time){
     Time* result = new Time();
     //TOP PRIORITY FOR TIME
@@ -101,10 +153,10 @@ Time* add(Time* time1,Time* time2){
 
 //Setters//
 /*
-void Time::setHours(int h){
-    this->hours = h;
-}
-*/
+ void Time::setHours(int h){
+ this->hours = h;
+ }
+ */
 
 int Time::getTime(){
     int totalTime; //Total time in seconds
@@ -119,9 +171,9 @@ int Time::getTime(){
 class Song {
     
 private:
-    string title; // or should this be an array???
+    string title;
     string artist;
-    int runtime;  //FIXME - Wrong type - Time object
+    int Time;
     
     int day;
     
@@ -138,40 +190,38 @@ public:
     void addTime();
     
     //GETTERS//
-    int getTitle();  //FIXME - Wrong type
-    int getArtist(); //FIXME - Wrong type
-    int getRuntime(); //FIXME - Wrong type
+    string getTitle();
+    string getArtist();
+    int getTime();
     
     //SETTERS//
-    void setTitle(int t); //FIXME - Wrong type
-    void setArtist(int a);//FIXME - Wrong type
-    void setRuntime(int rt); //FIXME - Wrong type
+    void setTitle(string t);
+    void setArtist(string a);
+    void setTime(int rt);
 };
 
 //Default Constructor
 Song::Song(){
     this->title = " ";
     this->artist = " ";
-    this->runtime = 0;
+    this->Time = 0;
 }
 
 //Constructor with params
-////FIXME - Wrong type for parameter "rt"
 Song::Song(string t, string a, int rt){
-    //FIXME: add "this->"
-    title = t;
-    artist = a;
-    runtime = rt;
+    this->title = t;
+    this->artist = a;
+    this->Time = rt;
 }
 
 struct SongNode{
-
+    
 private:
     
     //Attributes go here
     Song* song;
     SongNode* next;
-
+    
 public:
     
     //Member functions
