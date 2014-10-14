@@ -102,7 +102,7 @@ cout << " hours is " << hours<<  " minutes " << minutes << " seconds " << second
 //This is the usage
 Time* resultTime = myTime->add(myTime2);
 
-Time* add(Time* time){
+Time* Time::add(Time* time){
     Time* result = new Time();
     //TOP PRIORITY FOR TIME
     //Your Job is to add:
