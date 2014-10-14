@@ -66,7 +66,7 @@ void testSongObject(){
 
 int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n";
-    labFour();
+
     
     return 0;
 }
