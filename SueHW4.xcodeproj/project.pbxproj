@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		23916D5919E6C823003022D1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23916D5819E6C823003022D1 /* main.cpp */; };
+		23F040FB19EDD3B600FAE82A /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F040F919EDD3B600FAE82A /* time.cpp */; };
+		23F040FE19EDD6D900FAE82A /* song.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F040FC19EDD6D900FAE82A /* song.cpp */; };
+		23F0410119EDD9B100FAE82A /* SongNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F040FF19EDD9B100FAE82A /* SongNode.cpp */; };
+		23F0410419EDDC3600FAE82A /* playlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F0410219EDDC3600FAE82A /* playlist.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,14 @@
 /* Begin PBXFileReference section */
 		23916D5519E6C823003022D1 /* SueHW4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SueHW4; sourceTree = BUILT_PRODUCTS_DIR; };
 		23916D5819E6C823003022D1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		23F040F919EDD3B600FAE82A /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
+		23F040FA19EDD3B600FAE82A /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		23F040FC19EDD6D900FAE82A /* song.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = song.cpp; sourceTree = "<group>"; };
+		23F040FD19EDD6D900FAE82A /* song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = song.h; sourceTree = "<group>"; };
+		23F040FF19EDD9B100FAE82A /* SongNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SongNode.cpp; sourceTree = "<group>"; };
+		23F0410019EDD9B100FAE82A /* SongNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongNode.h; sourceTree = "<group>"; };
+		23F0410219EDDC3600FAE82A /* playlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playlist.cpp; sourceTree = "<group>"; };
+		23F0410319EDDC3600FAE82A /* playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playlist.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,14 @@
 			isa = PBXGroup;
 			children = (
 				23916D5819E6C823003022D1 /* main.cpp */,
+				23F0410219EDDC3600FAE82A /* playlist.cpp */,
+				23F0410319EDDC3600FAE82A /* playlist.h */,
+				23F040FF19EDD9B100FAE82A /* SongNode.cpp */,
+				23F0410019EDD9B100FAE82A /* SongNode.h */,
+				23F040F919EDD3B600FAE82A /* time.cpp */,
+				23F040FA19EDD3B600FAE82A /* time.h */,
+				23F040FC19EDD6D900FAE82A /* song.cpp */,
+				23F040FD19EDD6D900FAE82A /* song.h */,
 			);
 			path = SueHW4;
 			sourceTree = "<group>";
@@ -118,7 +138,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F040FB19EDD3B600FAE82A /* time.cpp in Sources */,
 				23916D5919E6C823003022D1 /* main.cpp in Sources */,
+				23F0410119EDD9B100FAE82A /* SongNode.cpp in Sources */,
+				23F0410419EDDC3600FAE82A /* playlist.cpp in Sources */,
+				23F040FE19EDD6D900FAE82A /* song.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +256,7 @@
 				23916D5E19E6C823003022D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
