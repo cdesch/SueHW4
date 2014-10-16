@@ -33,9 +33,8 @@ public:
     //Member functions
     
     //Setters
-    void setSong(Song* song);    //TODO: create function implementation in SongNode.cpp
-    void setNext(SongNode* next);   //TODO: create function implementation in SongNode.cpp
-    
+    void setSong(Song* song);
+    void setNext(SongNode* next);
     //Getters
     Song* getSong();
     SongNode* getNext();

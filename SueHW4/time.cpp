@@ -8,7 +8,7 @@
 
 #include "time.h"
 
-Time* Time::add(Time* time){
+Time* Time::add(Time* runtime){
 
     //TOP PRIORITY FOR TIME
     //Your Job is to add:
@@ -42,43 +42,24 @@ Time* Time::add(Time* time){
 // pre: hours, minutes seconds
 // post: converts time into seconds and then sums to get time in seconds
 void Time::printTime(){
-    int totalTime = hours*3600 + minutes * 60 + seconds; //FIXME: to use "this->" for hours, minutes and seconds
+    int totalTime = this->getHours()*3600 + this->getMinutes() * 60 + this-> getSeconds(); //FIXME: to use "this->" for hours, minutes and seconds
     cout << "totalTime = " << totalTime << endl;
+
 }
 
 int Time::getTotalSeconds(){
     int totalTime; //Total time in seconds
-    totalTime = (hours * 3600) + (minutes*60) + seconds; //FIXME: to use "this->" for hours, minutes and seconds
+    totalTime = (this->getHours() * 3600) + (this->getMinutes()*60) + this->getSeconds(); //FIXME: to use "this->" for hours, minutes and seconds
     return totalTime;
 }
 
 
 //Converts a total amount of seconds to hours, minutes and seconds
 void Time::setUsingsSeconds(int seconds){
-    
-    //TODO: setting this->hours ,this->minutes, this->seconds
+    this->hours = seconds/3600;
+    this->minutes = (seconds - (this->getHours()*3600))/60;
+    this->seconds = (seconds - (this->getHours()*3600)-(this->getMinutes()*60));
 }
 
 
-//GETTERS//
-int Time::getHours(){
-    return hours;  //FIXME: this->hours
-}
-int Time::getMinutes(){
-    return minutes; //FIXME: add "this->"
-}
-int Time::getSeconds(){
-    return seconds; //FIXME: this->
-}
-
-//SETTERS//
-void Time::setHours(int hours){
-    this->hours = hours; //FIXME: this->
-}
-void Time::setMinutes(int m){
-    minutes = m;    //FIXME: this->
-}
-void Time::setSeconds(int s){
-    seconds = s;    //FIXME: this->
-}
 

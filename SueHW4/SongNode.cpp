@@ -8,7 +8,16 @@
 
 #include "SongNode.h"
 
-//TODO: setters
+//Setters
+void SongNode::setSong(Song* song){
+    this->song = song;
+}
+
+void SongNode::setNext(SongNode* next){
+    this->next = next;
+}
+
+//Getters
 //<return Type> <class/struct name>::<functionName>(<parameter list>){}
 Song* SongNode::getSong(){
     return this->song;

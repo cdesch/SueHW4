@@ -37,18 +37,51 @@ public:
 
     //TODO: Constructor, setters and getters
     //Constructors
-    Playlist(); //Default constructor
-    //
-    ~Playlist();
-    
+    Playlist(){} //Default constructor
+    ~Playlist(){}
     //Member functions
+    Playlist(string title, SongNode* head, SongNode* tail, int numsongs, Time* totalPlayTime){
+        this->title = title;
+        this->head  = head;
+        this->tail = tail;
+        this->numsongs = numsongs;
+        this->totalPlayTime = totalPlayTime;
+    }
     
-    //Setters
+    //Setters  //????? Deleted Playlist:: before each prior to set and get statements
+    void setTitle(string title){
+        this->title = title;
+    }
+    void setHead(SongNode* head){
+        this->head = head;
+    }
+    void setTail(SongNode* tail){
+        this->tail = tail;
+    }
+    void setNumsongs(int numsongs){
+        this->numsongs=numsongs;
+    }
+    void setTime(Time* totalPlayTime){
+        this->totalPlayTime = totalPlayTime;
+    }
 
     //Getters
-    
+    string getTitle(string title){
+        return this->title;
+    }
+    SongNode* getHead(SongNode* head){
+        return this->head;
+    }
+    SongNode* getTail(SongNode* tail){
+        return this->tail;
+    }
+    int getNumsongs(int numsongs){
+        return this->numsongs;
+    }
+    Time* getTime(Time* totalPlayTime){
+        return this->totalPlayTime;
+    }
+
 };
-
-
 
 #endif /* defined(__SueHW4__playlist__) */

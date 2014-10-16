@@ -28,14 +28,26 @@ public:
     void setUsingsSeconds(int seconds);
     
     //Setters//
-    void setHours(int hours);
-    void setMinutes(int m);
-    void setSeconds(int s);
+    void setHours(int hours){
+        this->hours = hours;
+    }
+    void setMinutes(int minutes){
+        this->minutes = minutes;
+    }
+    void setSeconds(int seconds){
+        this->seconds = seconds;
+    }
     
     //Getters//
-    int getHours();
-    int getMinutes();
-    int getSeconds();
+    int getHours(){
+        return this->hours;
+    }
+    int getMinutes(){
+        return this->minutes;
+    }
+    int getSeconds(){
+        return this->seconds;
+    }
 
 };
 
