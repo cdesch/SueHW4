@@ -14,16 +14,11 @@
 #include "song.h"
 using namespace std;
 
-
-
 //Adds time to the current object
 // Usage:
 void testTimeObject(){
     Time* myTime = new Time();
     Time* myTime2 = new Time();
-    
-    //Adds time to the current object
-    //Usage:
     
     myTime->setHours(1);
     myTime->setMinutes(2);
@@ -33,7 +28,6 @@ void testTimeObject(){
     myTime2->setMinutes(4);
     myTime2->setSeconds(5);
     
-    //This is the usage
     Time* resultTime = myTime->add(myTime2);
     resultTime->printTime();
     
@@ -70,15 +64,13 @@ void testSongObject(){
 
     
     //TODO: test all song getters
-    
-    
 
-    
 }
 
 void testReadAndPrint(){
     
     //read file and print
+    
     
     
 }
