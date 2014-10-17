@@ -49,7 +49,7 @@ void Time::printTime(){
 int Time::getTotalSeconds(){
     int totalTime; //Total time in seconds
     totalTime = (this->getHours() * 3600) + (this->getMinutes()*60) + this->getSeconds();
-    cout << "totalTime in seconds "<< totalTime << endl;
+    //cout << "totalTime in seconds "<< totalTime << endl;
     return totalTime;
 }
 

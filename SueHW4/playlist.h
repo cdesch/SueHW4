@@ -35,7 +35,7 @@ private:
     
 public:
 
-    //TODO: Constructor, setters and getters
+
     //Constructors
     Playlist(){} //Default constructor
     ~Playlist(){}
@@ -48,7 +48,7 @@ public:
         this->totalPlayTime = totalPlayTime;
     }
     
-    //Setters  //????? Deleted Playlist:: before each prior to set and get statements
+    //Setters
     void setTitle(string title){
         this->title = title;
     }
@@ -59,7 +59,7 @@ public:
         this->tail = tail;
     }
     void setNumsongs(int numsongs){
-        this->numsongs=numsongs;
+        this->numsongs = numsongs;
     }
     void setTime(Time* totalPlayTime){
         this->totalPlayTime = totalPlayTime;

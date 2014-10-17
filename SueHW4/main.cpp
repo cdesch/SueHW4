@@ -12,6 +12,7 @@
 #include <sstream>
 #include "time.h"
 #include "song.h"
+#include <vector>
 using namespace std;
 
 
@@ -77,58 +78,66 @@ int convertStringToInt(string myString){
     return atoi(myString.c_str());
 }
 
-//ReadFile reads database and creates the objects
-Song* readFile(string filename){
-    Song* songsInfo; //Vector of TYPE Songs named 'songsInfo'
+
+
+vector <Song*> readFileByLine(string filename){
+
+    vector <Song*> vectorOfSongs;
     
     ifstream infile(filename); //Open the file
     string str; //Declares a string and is used for temporary storage
     
     if (infile.is_open()){
+        //While the file is open AND you can get line, loop
         while (getline(infile,str, '\r')){
+            
             string title;
             string artist;
-            Time* runtime;
+            int runtime;
+
+            title = str;
             
-            string token;
-            stringstream stringStream(str);
-            //Get title
-            if (getline(stringStream, token, ' ')){
-                title = token;
+            if (getline(infile,str,'\r')){
+                artist = str;
             }
-            //Get Artist
-            if (getline(stringStream, token, ' ')){
-                artist = token;
-            }
-            //Get Runtime
-            if (getline(stringStream, token, ' ')){
-                Time* runtime = convertStringToInt(token);
+            if (getline(infile,str,'\r')){
+                runtime = convertStringToInt(str);
             }
             
-            //SongsVariable(title, artist, runtime);
-            //songsInfo.push_back(SongsVariable);
+            //Store the song in the vector of songs
+            Time* myRuntime = new Time();
+            myRuntime->setUsingSeconds(runtime);
+            Song* myNewSong = new Song(title,artist,myRuntime);
+            vectorOfSongs.push_back(myNewSong);
+            
         }
         infile.close();
-    }
-    else{
+    }else{
         cout << "Unable to open file" << endl << endl;
     }
-    return songsInfo;
+    
+    return vectorOfSongs;
+
 }
 
-void testReadAndPrint(Song* songsInfo){
+
+void testReadAndPrint(vector<Song*> vectorOfSongs){
     //Check work by printing the information for songs objects
-    for(int i = 0; i < 1000; i++){
-        cout << i << ": " ;
-        cout << "Title " << songsInfo->getTitle() << endl;
-        cout << "Artist " << songsInfo->getArtist() << endl;
-        cout << "Runtime " << songsInfo->getTime() << endl << endl;
-        }
+    
+    for(int i = 0; i < vectorOfSongs.size(); i++){
+        Song* songsInfo = vectorOfSongs[i];
+        
+        cout << i << ": " << endl;
+        cout << "Title: " << songsInfo->getTitle() << endl;
+        cout << "Artist: " << songsInfo->getArtist() << endl;
+        Time* mySongTime = songsInfo->getTime();
+        cout << "Runtime: " << mySongTime->getTotalSeconds() << endl << endl;
     }
+}
 
 void testReadCreateObjectAndPrint(){
-    Song::Song* songsInfoVectorDB = readFile("/Users/susanchang/Desktop/metal2.txt");
-    testReadAndPrint(songsInfoVectorDB);    //read file and print
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    testReadAndPrint(vectorOfSongs);    //read file and print
 }
  
 
@@ -136,7 +145,7 @@ int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n\n";
     
     testReadCreateObjectAndPrint();
-    testSongObject();
+    //testSongObject();
     
     return 0;
 }
