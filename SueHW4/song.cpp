@@ -8,8 +8,6 @@
 
 #include "song.h"
 
-
-
 //Default Constructor
 Song::Song(string title, string artist, Time* runtime){
     this->title = title;
@@ -20,7 +18,6 @@ Song::Song(string title, string artist, Time* runtime){
 //Deconstructor
 Song::~Song(){
 }
-
 
 //SETTERS//
 void Song::setTitle(string title){
@@ -48,4 +45,3 @@ string Song::getArtist(){
 Time* Song::getTime(){
     return this->runtime;
 }
-

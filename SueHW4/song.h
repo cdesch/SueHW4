@@ -45,6 +45,7 @@ public:
     string getTitle();
     string getArtist();
     Time* getTime();
+    
 
 };
 

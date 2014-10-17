@@ -25,7 +25,7 @@ public:
     Time* add(Time* time);              //Will add it to the object
     void printTime();
     int getTotalSeconds();
-    void setUsingsSeconds(int seconds);
+    void setUsingSeconds(int seconds);
     
     //Setters//
     void setHours(int hours){
