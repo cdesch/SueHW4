@@ -12,6 +12,7 @@
 #include <sstream>
 #include "time.h"
 #include "song.h"
+#include "playlist.h"
 #include <vector>
 using namespace std;
 
@@ -139,12 +140,27 @@ void testReadCreateObjectAndPrint(){
     vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
     testReadAndPrint(vectorOfSongs);    //read file and print
 }
+
+void testPlaylistAddAndListFunctions(){
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    
+    myPlaylist->addSong(vectorOfSongs[0]);
+    myPlaylist->addSong(vectorOfSongs[1]);
+    myPlaylist->addSong(vectorOfSongs[2]);
+    myPlaylist->addSong(vectorOfSongs[3]);        myPlaylist->addSong(vectorOfSongs[4]);
+    
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    
+}
  
 
 int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n\n";
-    
-    testReadCreateObjectAndPrint();
+    testPlaylistAddAndListFunctions();
+    //testReadCreateObjectAndPrint();
     //testSongObject();
     
     return 0;

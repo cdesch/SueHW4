@@ -19,6 +19,12 @@ Song::Song(string title, string artist, Time* runtime){
 Song::~Song(){
 }
 
+//Member Functions//
+void Song::printInfo(){
+    cout << this->getTitle() << " - " << this->getArtist() << " : " << this->runtime->getTotalSeconds() << endl;
+}
+
+
 //SETTERS//
 void Song::setTitle(string title){
     this->title=title;  

@@ -36,6 +36,9 @@ public:
     //Deconstructor
     ~Song();
     
+    //Member Functions//
+    void printInfo();
+    
     //SETTERS//
     void setTitle(string title);
     void setArtist(string artist);

@@ -23,6 +23,9 @@ private:
 public:
     //Functions
     Time* add(Time* time);              //Will add it to the object
+    void addTime(Time* runtime);
+    Time* subtract(Time* runtime);
+    void subtractTime(Time* runtime);
     void printTime();
     int getTotalSeconds();
     void setUsingSeconds(int seconds);

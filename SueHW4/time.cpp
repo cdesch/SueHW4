@@ -36,6 +36,34 @@ Time* Time::add(Time* runtime){
     return result;
 }
 
+//Add time to self
+void Time::addTime(Time* runtime){
+    
+    //TOP PRIORITY FOR TIME
+    //Your Job is to add:
+    //this->hours; this->minutes; this->seconds;   //THIS
+    //to
+    //time->hours; time->minutes; time->seconds;   //TIME
+    
+    int TotalSeconds = this->getTotalSeconds() + runtime->getTotalSeconds();
+    
+    
+    //Convert "this->" and "time" objects to seconds
+    //add them
+    //divide by whatever to get hours, minutes and seconds
+    
+    //Create a new object
+    
+    //Time* result = new Time();
+    
+    this->setUsingSeconds(TotalSeconds);
+    
+}
+
+//TODO:
+//Time* subtract(Time* runtime);
+//void subtractTime(Time* runtime);
+
 // Member Functions
 
 // Prints time in seconds

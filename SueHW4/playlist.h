@@ -33,6 +33,9 @@ private:
     int numsongs;
     Time* totalPlayTime;
     
+    void swap(SongNode*firstSongNode, SongNode* secondSongNode);
+    //Traverse Linked List
+    
 public:
 
 
@@ -40,13 +43,27 @@ public:
     Playlist(){} //Default constructor
     ~Playlist(){}
     //Member functions
-    Playlist(string title, SongNode* head, SongNode* tail, int numsongs, Time* totalPlayTime){
+    Playlist(string title){
         this->title = title;
-        this->head  = head;
-        this->tail = tail;
-        this->numsongs = numsongs;
-        this->totalPlayTime = totalPlayTime;
+        this->head  = NULL;
+        this->tail = NULL;
+        this->numsongs = 0;
+        this->totalPlayTime = new Time();
+        this->totalPlayTime->setUsingSeconds(0);
     }
+
+    //Member functions
+    void addSong(Song* song);
+    void insertSong(Song* song); //Inserts at location?
+    void removeSong(Song* song);
+    Song* findSong(Song* song); //find by Title? find by artist
+    void listSongs();
+    void sortSongsByArtist();
+    void sortSongsByTitle();
+    
+    /**** EXTRA CREDIT ****/
+    void shuffle();
+    /**** EXTRA CREDIT ****/
     
     //Setters
     void setTitle(string title){
@@ -66,22 +83,22 @@ public:
     }
 
     //Getters
-    string getTitle(string title){
+    string getTitle(){
         return this->title;
     }
-    SongNode* getHead(SongNode* head){
+    SongNode* getHead(){
         return this->head;
     }
-    SongNode* getTail(SongNode* tail){
+    SongNode* getTail(){
         return this->tail;
     }
-    int getNumsongs(int numsongs){
+    int getNumsongs(){
         return this->numsongs;
     }
-    Time* getTime(Time* totalPlayTime){
+    Time* getTime(){
         return this->totalPlayTime;
     }
-
+    
 };
 
 #endif /* defined(__SueHW4__playlist__) */
