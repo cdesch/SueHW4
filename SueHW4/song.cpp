@@ -21,13 +21,14 @@ Song::~Song(){
 
 //Member Functions//
 void Song::printInfo(){
+    
     cout << this->getTitle() << " - " << this->getArtist() << " : " << this->runtime->getTotalSeconds() << endl;
 }
 
 
 //SETTERS//
 void Song::setTitle(string title){
-    this->title=title;  
+    this->title = title;
 }
 
 void Song::setArtist(string artist){
@@ -35,7 +36,6 @@ void Song::setArtist(string artist){
 }
 
 void Song::setTime(Time* runtime){
-    
     this->runtime = runtime;
 }
 

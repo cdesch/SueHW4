@@ -35,6 +35,11 @@ public:
     //Setters
     void setSong(Song* song);
     void setNext(SongNode* next);
+    void prepareForDeletion(){
+        this->next = NULL;
+        this->song = NULL;
+    }
+    
     //Getters
     Song* getSong();
     SongNode* getNext();

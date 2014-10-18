@@ -35,6 +35,19 @@ private:
     
     void swap(SongNode*firstSongNode, SongNode* secondSongNode);
     //Traverse Linked List
+    bool isEqual(Song* song1, Song* song2);
+    
+    //Helper Function
+    bool isSongInPlaylist(Song* song){
+        if(this->findSongNode(song) == NULL){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    int indexForSong(Song* song);
+    SongNode* getSongNodeAtIndex(int index);
     
 public:
 
@@ -57,9 +70,14 @@ public:
     void insertSong(Song* song); //Inserts at location?
     void removeSong(Song* song);
     Song* findSong(Song* song); //find by Title? find by artist
+    SongNode* findSongNode(Song* song);
     void listSongs();
     void sortSongsByArtist();
     void sortSongsByTitle();
+    int getTotalRuntimeInSeconds(){
+        return this->totalPlayTime->getTotalSeconds();
+    }
+
     
     /**** EXTRA CREDIT ****/
     void shuffle();

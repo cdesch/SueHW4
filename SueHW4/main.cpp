@@ -154,12 +154,62 @@ void testPlaylistAddAndListFunctions(){
     myPlaylist->listSongs();
     cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
     
+    cout << endl;
+    cout << "Test Playlist::findSongNode() function" << endl;
+    SongNode* mySongNode = myPlaylist->findSongNode(vectorOfSongs[2]);
+    Song* mySong = mySongNode->getSong();
+    mySong->printInfo();
+    
 }
+
+void testPlaylistAddRemoveListFunctions(){
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+        cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    int numSongs = 10;
+    for(int i = 0; i < numSongs; i++){
+        myPlaylist->addSong(vectorOfSongs[i]);
+    }
+    
+    myPlaylist->listSongs();
+    cout << endl;
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds() << endl;
+    //Remove from  middle
+    cout << "****Remove from Middle: "<< endl;
+    myPlaylist->removeSong(vectorOfSongs[1]);
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+
+    cout << endl;
+    
+    //Remove from beginning
+    cout << "****Remove from Beginning: "<< endl;
+    myPlaylist->removeSong(vectorOfSongs[0]);
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+
+    cout << endl;
+    //Remove from end
+    cout << "****Remove from end: "<< endl;
+    myPlaylist->removeSong(vectorOfSongs[numSongs-1]);
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    
+    
+    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    testReadAndPrint(vectorOfSongs);
+}
+
  
 
 int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n\n";
-    testPlaylistAddAndListFunctions();
+    //testPlaylistAddAndListFunctions();
+    testPlaylistAddRemoveListFunctions();
     //testReadCreateObjectAndPrint();
     //testSongObject();
     

@@ -61,8 +61,42 @@ void Time::addTime(Time* runtime){
 }
 
 //TODO:
-//Time* subtract(Time* runtime);
-//void subtractTime(Time* runtime);
+Time* Time::subtract(Time* runtime){
+    
+    int TotalSeconds = this->getTotalSeconds() - runtime->getTotalSeconds();
+    
+    
+    //Convert "this->" and "time" objects to seconds
+    //add them
+    //divide by whatever to get hours, minutes and seconds
+    
+    //Create a new object
+    
+    if(TotalSeconds < 0 ){
+        TotalSeconds = 0;
+    }
+    
+    Time* result = new Time();
+    
+    this->setUsingSeconds(TotalSeconds);
+    
+    
+    
+    result->hours = this->getHours();
+    result->minutes = this->getMinutes();
+    result->seconds = this->getSeconds();
+    
+    return result;
+}
+void Time::subtractTime(Time* runtime){
+    
+    int TotalSeconds = this->getTotalSeconds() - runtime->getTotalSeconds();
+    
+    if(TotalSeconds < 0){
+        TotalSeconds = 0;
+    }
+    this->setUsingSeconds(TotalSeconds);
+}
 
 // Member Functions
 
