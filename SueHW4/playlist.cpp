@@ -100,7 +100,15 @@ void Playlist::addSong(Song* song){
     this->numsongs++;
     this->totalPlayTime->addTime(song->getTime());
 }
-void Playlist::insertSong(Song* song){
+void Playlist::insertSongAtIndex(Song* song, int index){
+    
+    //Check index for bounds
+    if(index < 0 || index >= this->numsongs){
+        cout << "Error: Cannot insert song at index that is out of bounds" << endl;
+        return;
+    }
+    
+    //Insert Songs
     
 }
 void Playlist::removeSong(Song* song){

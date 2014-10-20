@@ -70,7 +70,7 @@ public:
 
     //Member functions
     void addSong(Song* song);
-    void insertSong(Song* song); //Inserts at location?
+    void insertSongAtIndex(Song* song, int index);
     void removeSong(Song* song);
     Song* findSong(Song* song); //find by Title? find by artist
     SongNode* findSongNode(Song* song);
