@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		234FC6B319F56197000FCD1A /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 234FC6B119F56197000FCD1A /* utility.cpp */; };
 		23916D5919E6C823003022D1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23916D5819E6C823003022D1 /* main.cpp */; };
 		23F040FB19EDD3B600FAE82A /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F040F919EDD3B600FAE82A /* time.cpp */; };
 		23F040FE19EDD6D900FAE82A /* song.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F040FC19EDD6D900FAE82A /* song.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		234FC6B119F56197000FCD1A /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
+		234FC6B219F56197000FCD1A /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		23916D5519E6C823003022D1 /* SueHW4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SueHW4; sourceTree = BUILT_PRODUCTS_DIR; };
 		23916D5819E6C823003022D1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		23F040F919EDD3B600FAE82A /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				23916D5819E6C823003022D1 /* main.cpp */,
+				234FC6B119F56197000FCD1A /* utility.cpp */,
+				234FC6B219F56197000FCD1A /* utility.h */,
 				23F0410219EDDC3600FAE82A /* playlist.cpp */,
 				23F0410319EDDC3600FAE82A /* playlist.h */,
 				23F040FF19EDD9B100FAE82A /* SongNode.cpp */,
@@ -138,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				234FC6B319F56197000FCD1A /* utility.cpp in Sources */,
 				23F040FB19EDD3B600FAE82A /* time.cpp in Sources */,
 				23916D5919E6C823003022D1 /* main.cpp in Sources */,
 				23F0410119EDD9B100FAE82A /* SongNode.cpp in Sources */,
