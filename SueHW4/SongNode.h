@@ -35,6 +35,12 @@ public:
     //Setters
     void setSong(Song* song);
     void setNext(SongNode* next);
+    void setSongToNull(){
+        this->song = NULL;
+    }
+    void setNextToNull(){
+        this->next = NULL;
+    }
     void prepareForDeletion(){
         this->next = NULL;
         this->song = NULL;

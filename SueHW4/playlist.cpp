@@ -104,7 +104,7 @@ void Playlist::insertSong(Song* song){
     
 }
 void Playlist::removeSong(Song* song){
-    Song* currentSong;
+    
     //Use Case: If the linked list is empty?
     if(this->numsongs == 0){
         cout << "Error: cannot remove song from empty list" << endl;
@@ -113,7 +113,7 @@ void Playlist::removeSong(Song* song){
     
     //Use Case: If there is only one item in the list
     if (this->numsongs == 1){
-        currentSong = this->head->getSong();
+        Song* currentSong = this->head->getSong();
         if(isEqual(currentSong, song)){
             //Can be removed
             
@@ -149,10 +149,10 @@ void Playlist::removeSong(Song* song){
 
         //**** THIS CODE IS KIND OF REPETITIVE, WE MAY WANT TO FIGURE A WAY TO MAKE IT "DRY" (Don't Repeat Yourself)
         this->numsongs --;
-        currentSong = mySongNode->getSong();
+        Song* currentSong = mySongNode->getSong();
         this->totalPlayTime->subtract(currentSong->getTime()); //Subtract song from total playing
         
-
+        
         delete mySongNode;
         return;
     }
@@ -161,19 +161,19 @@ void Playlist::removeSong(Song* song){
     //If the "tail" is equal to the song, then we know the song that we are removing is the last song
     if(this->isEqual(this->tail->getSong(), song)){
         // We need to get the previous song. We know how many songs are linked list
-        SongNode* previousSongNode = this->getSongNodeAtIndex(this->numsongs - 1);
-        
-        SongNode* mySongNode = this->tail;
+        SongNode* previousSongNode = this->getSongNodeAtIndex(this->numsongs - 2);
+        SongNode* lastSongNode = this->tail;
 
         this->tail = previousSongNode; //Set a new tail
-        previousSongNode->setNext(NULL);
-        this->tail->setNext(NULL);
-        this->numsongs --;
-        currentSong = mySongNode->getSong();
-        this->totalPlayTime->subtract(currentSong->getTime()); //Subtract song from total playing
-        mySongNode->prepareForDeletion();
         
-        delete mySongNode;
+        this->numsongs --;
+        Song* currentSong = lastSongNode->getSong();
+        this->totalPlayTime->subtract(currentSong->getTime()); //Subtract song from total playing
+        lastSongNode->prepareForDeletion();
+        delete lastSongNode;
+        
+        previousSongNode->setNext(NULL);
+
         return;
     }
     
@@ -191,7 +191,7 @@ void Playlist::removeSong(Song* song){
     myPreviousSongNode->setNext(myNextSongNode);
     
     this->numsongs --;    //Decrement the number songs
-    currentSong = mySongNodeToDelete->getSong();    //Decrement total playtime by the song being removed
+    Song* currentSong = mySongNodeToDelete->getSong();    //Decrement total playtime by the song being removed
     this->totalPlayTime->subtract(currentSong->getTime()); //Subtract song from total playing
     delete mySongNodeToDelete;
 
@@ -228,7 +228,11 @@ void Playlist::listSongs(){
     SongNode* myCurrentSongNode = this->head;
     while(myCurrentSongNode != NULL){
         Song* myCurrentSong = myCurrentSongNode->getSong(); //Getting the song out of the songNode
-        cout << "Start Print" << endl;
+        if(myCurrentSong == NULL){
+            cout << "NULL " << endl;
+            break;
+        }
+        
         myCurrentSong->printInfo();
         //Now get next song in the list
         if(myCurrentSongNode->getNext() == NULL){

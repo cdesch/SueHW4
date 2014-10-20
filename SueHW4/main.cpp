@@ -14,6 +14,7 @@
 #include "song.h"
 #include "playlist.h"
 #include <vector>
+#include <assert.h>
 using namespace std;
 
 
@@ -162,6 +163,18 @@ void testPlaylistAddAndListFunctions(){
     
 }
 
+
+
+void testPlaylistRemoveSong(Playlist* myPlaylist, Song* song ){
+
+
+    myPlaylist->removeSong(song);
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    cout << endl;
+}
+
 void testPlaylistAddRemoveListFunctions(){
     vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
         cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
@@ -175,33 +188,13 @@ void testPlaylistAddRemoveListFunctions(){
     cout << endl;
     cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
     cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds() << endl;
-    //Remove from  middle
-    cout << "****Remove from Middle: "<< endl;
-    myPlaylist->removeSong(vectorOfSongs[1]);
-    myPlaylist->listSongs();
-    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
-    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
 
-    cout << endl;
-    
-    //Remove from beginning
-    cout << "****Remove from Beginning: "<< endl;
-    myPlaylist->removeSong(vectorOfSongs[0]);
-    myPlaylist->listSongs();
-    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
-    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    testPlaylistRemoveSong(myPlaylist, vectorOfSongs[1]);
+    testPlaylistRemoveSong(myPlaylist, vectorOfSongs[0]);
+    testPlaylistRemoveSong(myPlaylist, vectorOfSongs[numSongs-1]);
 
-    cout << endl;
-    //Remove from end
-    cout << "****Remove from end: "<< endl;
-    myPlaylist->removeSong(vectorOfSongs[numSongs-1]);
-    myPlaylist->listSongs();
-    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
-    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
-    
-    
     cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
-    testReadAndPrint(vectorOfSongs);
+    //testReadAndPrint(vectorOfSongs);
 }
 
  

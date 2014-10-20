@@ -17,6 +17,7 @@
 #include "time.h"
 #include "SongNode.h"
 
+
 using namespace std;
 
 //***************
@@ -54,7 +55,9 @@ public:
 
     //Constructors
     Playlist(){} //Default constructor
-    ~Playlist(){}
+    ~Playlist(){
+        //Destroy all SongNodes
+    }
     //Member functions
     Playlist(string title){
         this->title = title;
