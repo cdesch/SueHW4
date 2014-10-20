@@ -197,12 +197,76 @@ void testPlaylistAddRemoveListFunctions(){
     //testReadAndPrint(vectorOfSongs);
 }
 
+
+void testPlaylistInsertSongFunctions(){
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    int numSongs = 10;
+    for(int i = 0; i < numSongs; i++){
+        myPlaylist->addSong(vectorOfSongs[i]);
+    }
+    
+    myPlaylist->listSongs();
+
+    
+    //Insert at beginning
+    myPlaylist->insertSongAtIndex(vectorOfSongs[100], 0);
+    
+    //Insert at middle
+    myPlaylist->insertSongAtIndex(vectorOfSongs[100], 8);
+    
+    //Insert at end
+    myPlaylist->insertSongAtIndex(vectorOfSongs[100],11);
+    
+}
+
+void testPlaylistSortFunctionArtist(){
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    int numSongs = 10;
+    for(int i = 0; i < numSongs; i++){
+        myPlaylist->addSong(vectorOfSongs[i]);
+    }
+    
+    
+    myPlaylist->listSongs();
+    cout << endl;
+    myPlaylist->sortSongsByArtist();
+        cout << endl;
+    myPlaylist->listSongs();
+    cout << endl;
+
+    
+}
+
+void testPlaylistSortFunctionTitle(){
+    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    int numSongs = 10;
+    for(int i = 0; i < numSongs; i++){
+        myPlaylist->addSong(vectorOfSongs[i]);
+    }
+    
+    
+    myPlaylist->listSongs();
+    cout << endl;
+    myPlaylist->sortSongsByTitle();
+    cout << endl;
+    myPlaylist->listSongs();
+    cout << endl;
+
+}
  
 
 int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n\n";
     //testPlaylistAddAndListFunctions();
-    testPlaylistAddRemoveListFunctions();
+    //testPlaylistAddRemoveListFunctions();
+    testPlaylistSortFunctionArtist();
+    testPlaylistSortFunctionTitle();
     //testReadCreateObjectAndPrint();
     //testSongObject();
     

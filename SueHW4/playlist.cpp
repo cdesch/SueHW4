@@ -12,6 +12,19 @@
 //Swaps the places of two songs in the linked list
 void Playlist::swap(SongNode*firstSongNode, SongNode* secondSongNode){
     
+    //get indexes
+    int firstSongNodeIndex = this->indexForSongNode(firstSongNode);
+    int secondSongNodeIndex = this->indexForSongNode(secondSongNode);
+    
+    Song* firstSong = firstSongNode->getSong();
+    Song* secondSong = secondSongNode->getSong();
+    //Remove one
+    this->removeSong(firstSongNode);
+    this->insertSongAtIndex(secondSong, firstSongNodeIndex);
+    
+    this->removeSong(secondSongNode);
+    this->insertSongAtIndex(firstSong, secondSongNodeIndex);
+    
 }
 
 bool Playlist::isEqual(Song* song1, Song* song2){
@@ -26,6 +39,10 @@ bool Playlist::isEqual(Song* song1, Song* song2){
     }else{
         return false;
     }
+}
+
+int Playlist::indexForSongNode(SongNode* songNode){
+    return this->indexForSong(songNode->getSong());
 }
 
 int Playlist::indexForSong(Song* song){
@@ -72,6 +89,15 @@ SongNode* Playlist::getSongNodeAtIndex(int index){
     return myCurrentSongNode;
 }
 
+Song* Playlist::getSongAtIndex(int index){
+    SongNode* mySongNode = this->getSongNodeAtIndex(index);
+    return mySongNode->getSong();
+}
+
+void Playlist::addSong(SongNode* songNode){
+    this->addSong(songNode->getSong());
+}
+
 //Adds song to the end of the list
 //
 void Playlist::addSong(Song* song){
@@ -103,14 +129,41 @@ void Playlist::addSong(Song* song){
 void Playlist::insertSongAtIndex(Song* song, int index){
     
     //Check index for bounds
-    if(index < 0 || index >= this->numsongs){
+    if(index < 0 || index > this->numsongs){
         cout << "Error: Cannot insert song at index that is out of bounds" << endl;
         return;
     }
+
+    //If inserting at the end of the linked-List, use the add function
+    if(index == this->numsongs || this->numsongs == 0){
+        this->addSong(song);
+        return;
+    }
     
-    //Insert Songs
+    SongNode* mySongNodeToAdd = new SongNode();
+    mySongNodeToAdd->setSong(song);
     
+    //Find the next SongNode
+    SongNode* myNextSongNode = this->getSongNodeAtIndex(index);
+    mySongNodeToAdd->setNext(myNextSongNode);
+    if(index == 0){
+        this->head = mySongNodeToAdd;
+        
+    }else{
+        //Find the previous SongNode
+        SongNode* myPreviousSongNode = this->getSongNodeAtIndex(index-1);
+        //set the songToAdd's "next" to the next song
+        myPreviousSongNode->setNext(mySongNodeToAdd);
+    }
+
+    this->numsongs ++;    //Increment the number songs
+    this->totalPlayTime->add(song->getTime()); //add song from total playing
 }
+
+void Playlist::removeSong(SongNode* songNode){
+    this->removeSong(songNode->getSong());
+}
+
 void Playlist::removeSong(Song* song){
     
     //Use Case: If the linked list is empty?
@@ -252,13 +305,68 @@ void Playlist::listSongs(){
 }
 void Playlist::sortSongsByArtist(){
     
+    //Sorting using insertion sort
+    for(int i = 0; i <= this->numsongs; i++ ){
+        for(int j = i - 1 ; j > 0; j--){
+            SongNode* previousSongNode = this->getSongNodeAtIndex(j-1);
+            SongNode* currentSongNode = this->getSongNodeAtIndex(j);
+            Song* previousSong = this->getSongAtIndex(j-1);
+            Song* currentSong = this->getSongAtIndex(j);
+            string previousSongString = previousSong->getArtist();
+            string currentSongString = currentSong->getArtist();
+            if(previousSongString.compare(currentSongString) > 0){
+                this->swap(previousSongNode, currentSongNode);
+            }
+
+        }
+    }
+    
 }
 void Playlist::sortSongsByTitle(){
     
+    for(int i = 0; i <= this->numsongs; i++ ){
+        for(int j = i - 1 ; j > 0; j--){
+            SongNode* previousSongNode = this->getSongNodeAtIndex(j-1);
+            SongNode* currentSongNode = this->getSongNodeAtIndex(j);
+            Song* previousSong = this->getSongAtIndex(j-1);
+            Song* currentSong = this->getSongAtIndex(j);
+            string previousSongString = previousSong->getTitle();
+            string currentSongString = currentSong->getTitle();
+            if(previousSongString.compare(currentSongString) > 0){
+                this->swap(previousSongNode, currentSongNode);
+            }
+            
+        }
+    }
+    
 }
+
+/*
+int Playlist::compareStrings(string first, string second){
+    return first.compare(second);
+}
+ */
+
+
+//If the first string is greater than the second, return true
+//if the second string is greater than the first, return false;
+
+bool Playlist::greaterThan(string first, string second){
+    return true;
+}
+
+bool Playlist::lessThan(string first, string second){
+    return true;
+}
+
 
 /**** EXTRA CREDIT ****/
 void Playlist::shuffle(){
+    
+    ///MAYBE... randomly choose a 2 indexes and swap those
+    
+    
+    
     
 }
 /**** EXTRA CREDIT ****/

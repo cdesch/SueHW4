@@ -17,7 +17,6 @@
 #include "time.h"
 #include "SongNode.h"
 
-
 using namespace std;
 
 //***************
@@ -46,9 +45,10 @@ private:
             return true;
         }
     }
-    
+    int indexForSongNode(SongNode* songNode);
     int indexForSong(Song* song);
     SongNode* getSongNodeAtIndex(int index);
+    Song* getSongAtIndex(int index);
     
 public:
 
@@ -70,8 +70,10 @@ public:
 
     //Member functions
     void addSong(Song* song);
+    void addSong(SongNode* songNode);
     void insertSongAtIndex(Song* song, int index);
     void removeSong(Song* song);
+    void removeSong(SongNode* songNode); //Overloaded Remove
     Song* findSong(Song* song); //find by Title? find by artist
     SongNode* findSongNode(Song* song);
     void listSongs();
@@ -80,7 +82,8 @@ public:
     int getTotalRuntimeInSeconds(){
         return this->totalPlayTime->getTotalSeconds();
     }
-
+    bool greaterThan(string first, string second);
+    bool lessThan(string first, string second);
     
     /**** EXTRA CREDIT ****/
     void shuffle();
