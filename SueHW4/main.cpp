@@ -1,4 +1,4 @@
-//
+///
 //
 // Lab 4
 //
@@ -17,7 +17,7 @@
 #include <assert.h>
 using namespace std;
 
-
+const string filePath = "/Users/cj/Desktop/Metal2.txt";
 
 //Adds time to the current object
 // Usage:
@@ -62,7 +62,7 @@ void testSongObject(){
     
     myNewSong->setTime(mySongtime); //will set the runtime for myNewSong
     cout << "Runtime is  " << myNewSong->getTime() << endl << endl;
-
+    
     Song* myNewSong2 = new Song("Piano Man","Billy Joel",mySongtime2);
     
     myNewSong2->setTitle("Piano Man"); //will set the title name on myNewSong2 to "Piano MAn"
@@ -73,17 +73,15 @@ void testSongObject(){
     
     myNewSong2->setTime(mySongtime2); //will set the runtime for Piano Man
     cout << "Runtime is  " << myNewSong2->getTime() << endl << endl;
-
+    
 }
 
 int convertStringToInt(string myString){
     return atoi(myString.c_str());
 }
 
-
-
 vector <Song*> readFileByLine(string filename){
-
+    
     vector <Song*> vectorOfSongs;
     
     ifstream infile(filename); //Open the file
@@ -96,7 +94,7 @@ vector <Song*> readFileByLine(string filename){
             string title;
             string artist;
             int runtime;
-
+            
             title = str;
             
             if (getline(infile,str,'\r')){
@@ -119,9 +117,8 @@ vector <Song*> readFileByLine(string filename){
     }
     
     return vectorOfSongs;
-
+    
 }
-
 
 void testReadAndPrint(vector<Song*> vectorOfSongs){
     //Check work by printing the information for songs objects
@@ -138,19 +135,20 @@ void testReadAndPrint(vector<Song*> vectorOfSongs){
 }
 
 void testReadCreateObjectAndPrint(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
     testReadAndPrint(vectorOfSongs);    //read file and print
 }
 
 void testPlaylistAddAndListFunctions(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
     
     Playlist* myPlaylist = new Playlist("MyPlaylist");
     
     myPlaylist->addSong(vectorOfSongs[0]);
     myPlaylist->addSong(vectorOfSongs[1]);
     myPlaylist->addSong(vectorOfSongs[2]);
-    myPlaylist->addSong(vectorOfSongs[3]);        myPlaylist->addSong(vectorOfSongs[4]);
+    myPlaylist->addSong(vectorOfSongs[3]);
+    myPlaylist->addSong(vectorOfSongs[4]);
     
     myPlaylist->listSongs();
     cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
@@ -160,14 +158,11 @@ void testPlaylistAddAndListFunctions(){
     SongNode* mySongNode = myPlaylist->findSongNode(vectorOfSongs[2]);
     Song* mySong = mySongNode->getSong();
     mySong->printInfo();
+    cout << endl;
     
 }
 
-
-
 void testPlaylistRemoveSong(Playlist* myPlaylist, Song* song ){
-
-
     myPlaylist->removeSong(song);
     myPlaylist->listSongs();
     cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
@@ -176,100 +171,155 @@ void testPlaylistRemoveSong(Playlist* myPlaylist, Song* song ){
 }
 
 void testPlaylistAddRemoveListFunctions(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
-        cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
     Playlist* myPlaylist = new Playlist("MyPlaylist");
     int numSongs = 10;
+    
+    cout << "Total Number of songs in the test array: " << numSongs << endl;
     for(int i = 0; i < numSongs; i++){
         myPlaylist->addSong(vectorOfSongs[i]);
     }
     
     myPlaylist->listSongs();
-    cout << endl;
+    
     cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
-    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds() << endl;
-
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds() << endl<< endl;
+    cout << "Remove second song from Playlist: " << endl;
     testPlaylistRemoveSong(myPlaylist, vectorOfSongs[1]);
+    cout << "Remove first song from Playlist: " << endl;
     testPlaylistRemoveSong(myPlaylist, vectorOfSongs[0]);
+    cout << "Remove last song from Playlist: " << endl;
     testPlaylistRemoveSong(myPlaylist, vectorOfSongs[numSongs-1]);
-
+    
     cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
     //testReadAndPrint(vectorOfSongs);
 }
 
 
 void testPlaylistInsertSongFunctions(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
-    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
+    
     Playlist* myPlaylist = new Playlist("MyPlaylist");
     int numSongs = 10;
     for(int i = 0; i < numSongs; i++){
         myPlaylist->addSong(vectorOfSongs[i]);
     }
     
+    cout << "  Original Playlist before adding song at beginning, middle, and end:" << endl;
+    cout << "***********************************************************************"<< endl;
     myPlaylist->listSongs();
-
+    cout << "  ****Number of songs: " << myPlaylist->getNumsongs();
+    cout << "        ****Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    
     
     //Insert at beginning
     myPlaylist->insertSongAtIndex(vectorOfSongs[100], 0);
+    cout << endl;
+    cout << "  Insert song at the beginning of the Playlist:" << endl;
+    cout << "*************************************************"<< endl;
+    myPlaylist->listSongs();
+    cout << "Number of songs: " << myPlaylist->getNumsongs() << endl;
+    cout << "Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    cout << "  ****Number of songs: " << myPlaylist->getNumsongs();
+    cout << "        ****Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    
     
     //Insert at middle
-    myPlaylist->insertSongAtIndex(vectorOfSongs[100], 8);
+    myPlaylist->insertSongAtIndex(vectorOfSongs[110], 8);
+    cout << endl;
+    cout << "  Insert song in the middle of the Playlist:" << endl;
+    cout << "**********************************************"<< endl;
+    myPlaylist->listSongs();
+    cout << "  ****Number of songs: " << myPlaylist->getNumsongs();
+    cout << "        ****Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
     
     //Insert at end
-    myPlaylist->insertSongAtIndex(vectorOfSongs[100],11);
+    myPlaylist->insertSongAtIndex(vectorOfSongs[120], numSongs+2);
+    cout << endl;
+    cout << "  Insert song at the end of the Playlist:" << endl;
+    cout << "*******************************************"<< endl;
+    myPlaylist->listSongs();
+    cout << "  ****Number of songs: " << myPlaylist->getNumsongs();
+    cout << "        ****Total runtime: " << myPlaylist->getTotalRuntimeInSeconds()<< endl;
+    cout << endl;
     
 }
 
 void testPlaylistSortFunctionArtist(){
     vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
-    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
     Playlist* myPlaylist = new Playlist("MyPlaylist");
-    int numSongs = 10;
+    int numSongs = 25;
     for(int i = 0; i < numSongs; i++){
         myPlaylist->addSong(vectorOfSongs[i]);
     }
-    
-    
+    //cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    cout << "Total Number of songs in the test array " << numSongs << endl;
+    cout << "  Songs unsorted by Artist:" << endl;
+    cout << "*****************************" << endl;
     myPlaylist->listSongs();
     cout << endl;
+    cout << "  Songs sorted by Artist:" << endl;
+    cout << "***************************" << endl;
     myPlaylist->sortSongsByArtist();
-        cout << endl;
     myPlaylist->listSongs();
-    cout << endl;
-
+    cout << endl << endl;
     
 }
 
 void testPlaylistSortFunctionTitle(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
-    cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
+    
     Playlist* myPlaylist = new Playlist("MyPlaylist");
-    int numSongs = 10;
+    int numSongs = 25;
     for(int i = 0; i < numSongs; i++){
         myPlaylist->addSong(vectorOfSongs[i]);
     }
-    
-    
+    //cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    cout << "Total Number of songs in the test array " << numSongs << endl;
+    cout << "  Songs unsorted by Title:" << endl;
+    cout << "**************************" << endl;
     myPlaylist->listSongs();
     cout << endl;
+    cout << "  Songs sorted by Title:" << endl;
+    cout << "**************************" << endl;
     myPlaylist->sortSongsByTitle();
-    cout << endl;
     myPlaylist->listSongs();
     cout << endl;
-
+    
 }
- 
+
+
+void testPlaylistShuffleFunction(){
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
+    
+    Playlist* myPlaylist = new Playlist("MyPlaylist");
+    int numSongs = 50;
+    for(int i = 0; i < numSongs; i++){
+        myPlaylist->addSong(vectorOfSongs[i]);
+    }
+    //cout << "Total Number of songs in the array " << vectorOfSongs.size() << endl;
+    cout << "Total Number of songs in the test array " << numSongs << endl;
+    cout << "   Playlist Sorted by Title:" << endl;
+    cout << "**********************" << endl;
+    myPlaylist->sortSongsByTitle();
+    myPlaylist->listSongs();
+    cout << endl;
+    cout << "  Shuffled Playlist:" << endl;
+    cout << "**********************" << endl;
+    myPlaylist->shuffle();
+    myPlaylist->listSongs();
+    cout << endl;
+}
+
 
 int main(int argc, const char * argv[]){
     cout << "Lab 4, Parts 1, 2, and Extra Credit \n\n";
     //testPlaylistAddAndListFunctions();
     //testPlaylistAddRemoveListFunctions();
-    testPlaylistSortFunctionArtist();
-    testPlaylistSortFunctionTitle();
+    //testPlaylistSortFunctionArtist();
+    //testPlaylistSortFunctionTitle();
+    //testPlaylistInsertSongFunctions();
     //testReadCreateObjectAndPrint();
-    //testSongObject();
-    
+    testPlaylistShuffleFunction();
     return 0;
 }
-

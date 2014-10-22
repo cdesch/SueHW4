@@ -16,6 +16,7 @@
 #include <sstream>
 #include "time.h"
 #include "SongNode.h"
+#include "utility.hpp"
 
 using namespace std;
 

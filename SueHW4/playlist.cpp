@@ -1,13 +1,11 @@
-//
+///
 //  playlist.cpp
-//  SueHW4
+//  HW4
 //
-//  Created by cj on 10/14/14.
-//  Copyright (c) 2014 KickinEspresso. All rights reserved.
+//
 //
 
 #include "playlist.h"
-
 
 //Swaps the places of two songs in the linked list
 void Playlist::swap(SongNode*firstSongNode, SongNode* secondSongNode){
@@ -29,8 +27,8 @@ void Playlist::swap(SongNode*firstSongNode, SongNode* secondSongNode){
 
 bool Playlist::isEqual(Song* song1, Song* song2){
     /*
-    if(song1 == song2){
-    }
+     if(song1 == song2){
+     }
      */
     
     //Compare Title
@@ -133,7 +131,7 @@ void Playlist::insertSongAtIndex(Song* song, int index){
         cout << "Error: Cannot insert song at index that is out of bounds" << endl;
         return;
     }
-
+    
     //If inserting at the end of the linked-List, use the add function
     if(index == this->numsongs || this->numsongs == 0){
         this->addSong(song);
@@ -155,7 +153,7 @@ void Playlist::insertSongAtIndex(Song* song, int index){
         //set the songToAdd's "next" to the next song
         myPreviousSongNode->setNext(mySongNodeToAdd);
     }
-
+    
     this->numsongs ++;    //Increment the number songs
     this->totalPlayTime->add(song->getTime()); //add song from total playing
 }
@@ -203,11 +201,11 @@ void Playlist::removeSong(Song* song){
     //Use Case: If removing first song, delete the node and set the "head" pointer to the next
     //If the "head" is equal to the song, then we know the song that we are removing is the first song
     if(this->isEqual(this->head->getSong(), song)){
-
+        
         //Remove that song
         SongNode* mySongNode = this->head;
         this->head = mySongNode->getNext();
-
+        
         //**** THIS CODE IS KIND OF REPETITIVE, WE MAY WANT TO FIGURE A WAY TO MAKE IT "DRY" (Don't Repeat Yourself)
         this->numsongs --;
         Song* currentSong = mySongNode->getSong();
@@ -224,7 +222,7 @@ void Playlist::removeSong(Song* song){
         // We need to get the previous song. We know how many songs are linked list
         SongNode* previousSongNode = this->getSongNodeAtIndex(this->numsongs - 2);
         SongNode* lastSongNode = this->tail;
-
+        
         this->tail = previousSongNode; //Set a new tail
         
         this->numsongs --;
@@ -234,17 +232,17 @@ void Playlist::removeSong(Song* song){
         delete lastSongNode;
         
         previousSongNode->setNext(NULL);
-
+        
         return;
     }
     
     //Use Case: If remove the middle  song, delete the node and set previous song's "next" pointer to the next song of the node being deleted.
     //We know the song is in the middle somewhere
-
+    
     //Get the song to delete
     SongNode* mySongNodeToDelete = this->findSongNode(song);
     int indexForSongNodeToDelete = this->indexForSong(song);
-
+    
     //Get the NEXT song node
     SongNode* myNextSongNode = this->getSongNodeAtIndex(indexForSongNodeToDelete +1);
     //get the PREVIOUS song node
@@ -255,7 +253,7 @@ void Playlist::removeSong(Song* song){
     Song* currentSong = mySongNodeToDelete->getSong();    //Decrement total playtime by the song being removed
     this->totalPlayTime->subtract(currentSong->getTime()); //Subtract song from total playing
     delete mySongNodeToDelete;
-
+    
 }
 //Returns song if it is in the list
 //Returns null if song is not in the list
@@ -317,7 +315,7 @@ void Playlist::sortSongsByArtist(){
             if(previousSongString.compare(currentSongString) > 0){
                 this->swap(previousSongNode, currentSongNode);
             }
-
+            
         }
     }
     
@@ -335,19 +333,9 @@ void Playlist::sortSongsByTitle(){
             if(previousSongString.compare(currentSongString) > 0){
                 this->swap(previousSongNode, currentSongNode);
             }
-            
         }
     }
-    
 }
-
-/*
-int Playlist::compareStrings(string first, string second){
-    return first.compare(second);
-}
- */
-
-
 //If the first string is greater than the second, return true
 //if the second string is greater than the first, return false;
 
@@ -359,14 +347,55 @@ bool Playlist::lessThan(string first, string second){
     return true;
 }
 
-
-/**** EXTRA CREDIT ****/
+//**** EXTRA CREDIT ****
 void Playlist::shuffle(){
+    int index1 = 0;
+    int index2 = 0;
+    long tempnumsongs = this->numsongs;
+    //cout << "In shuffle and numsongs = " << tempnumsongs << endl;
+    int mytemparray[this->numsongs]; //Initialize temp array
     
-    ///MAYBE... randomly choose a 2 indexes and swap those
+    for(int i=0; i < this->numsongs; i++){
+        mytemparray[i] = -1;
+    }
     
+    for(int i = 0; i <= int(this->numsongs/2); i++){
+        index1 =  utility::randomNumberUnder( tempnumsongs);
+        index2 =  utility::randomNumberUnder( tempnumsongs);
+        while(mytemparray[index1] != -1){
+            index1 = utility::randomNumberUnder( tempnumsongs);
+        }
+        
+        mytemparray[index1] = 0;
+        while(mytemparray[index2] != -1 && index1 != index2){
+            index2 = utility::randomNumberUnder( tempnumsongs);
+        }
+        mytemparray[index2]= 0;
+        SongNode* previousSongNode = this->getSongNodeAtIndex(index1);
+        SongNode* currentSongNode = this->getSongNodeAtIndex(index2);
+        this->swap(previousSongNode, currentSongNode);
+    }
+    //At this pointed shuffled but want to make sure there are no repeated songs next to each other.
     
-    
-    
+    for(int i = 0; i < (this->numsongs-1); i++){
+        
+        SongNode* nextSongNode = this->getSongNodeAtIndex(i+1);
+        SongNode* currentSongNode = this->getSongNodeAtIndex(i);
+        //Compare
+        Song* nextSong = nextSongNode->getSong();
+        Song* currentSong = currentSongNode->getSong();
+        string nextSongString = nextSong->getTitle();
+        string currentSongString = currentSong->getTitle();
+        if(nextSongString.compare(currentSongString) == 0){
+            //Move it to the end if it is the same
+            this->removeSong(nextSongNode);
+            this->addSong(nextSongNode);
+        }
+    }
 }
-/**** EXTRA CREDIT ****/
+
+
+
+
+
+
