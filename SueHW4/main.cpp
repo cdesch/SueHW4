@@ -246,7 +246,7 @@ void testPlaylistInsertSongFunctions(){
 }
 
 void testPlaylistSortFunctionArtist(){
-    vector<Song*> vectorOfSongs = readFileByLine("/Users/cj/Desktop/Metal2.txt");
+    vector<Song*> vectorOfSongs = readFileByLine(filePath);
     Playlist* myPlaylist = new Playlist("MyPlaylist");
     int numSongs = 25;
     for(int i = 0; i < numSongs; i++){
